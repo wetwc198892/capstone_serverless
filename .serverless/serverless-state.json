@@ -181,7 +181,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/capstone-proposal-system/dev/1622776758523-2021-06-04T03:19:18.523Z/capstone-proposal-system.zip"
+                "S3Key": "serverless/capstone-proposal-system/dev/1622824040451-2021-06-04T16:27:20.451Z/capstone-proposal-system.zip"
               },
               "Handler": "functions/login.getUser",
               "Runtime": "python3.8",
@@ -206,7 +206,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/capstone-proposal-system/dev/1622776758523-2021-06-04T03:19:18.523Z/capstone-proposal-system.zip"
+                "S3Key": "serverless/capstone-proposal-system/dev/1622824040451-2021-06-04T16:27:20.451Z/capstone-proposal-system.zip"
               },
               "Handler": "functions/getSubmission.getSubmissions",
               "Runtime": "python3.8",
@@ -462,7 +462,7 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1622776752594": {
+          "ApiGatewayDeployment1622824035290": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -968,8 +968,8 @@
           "venv/**",
           "proposal-app/**"
         ],
-        "artifact": "/Users/wetwc198892/Documents/GitHub/Capstone/capstone_proposal_system/.serverless/capstone-proposal-system.zip",
-        "artifactDirectoryName": "serverless/capstone-proposal-system/dev/1622776758523-2021-06-04T03:19:18.523Z"
+        "artifact": "/Users/wetwc198892/Documents/GitHub/Capstone/capstone_serverless/.serverless/capstone-proposal-system.zip",
+        "artifactDirectoryName": "serverless/capstone-proposal-system/dev/1622824040451-2021-06-04T16:27:20.451Z"
       },
       "plugins": {
         "$ref": "$[\"service\"][\"plugins\"]"
@@ -985,10 +985,10 @@
       }
     },
     "isDashboardMonitoringPreconfigured": false,
-    "artifact": "/Users/wetwc198892/Documents/GitHub/Capstone/capstone_proposal_system/.serverless/capstone-proposal-system.zip"
+    "artifact": "/Users/wetwc198892/Documents/GitHub/Capstone/capstone_serverless/.serverless/capstone-proposal-system.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/capstone-proposal-system/dev/1622776758523-2021-06-04T03:19:18.523Z",
+    "artifactDirectoryName": "serverless/capstone-proposal-system/dev/1622824040451-2021-06-04T16:27:20.451Z",
     "artifact": "capstone-proposal-system.zip"
   }
 }

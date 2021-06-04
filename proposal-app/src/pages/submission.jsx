@@ -62,7 +62,6 @@ function Submission() {
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     tableInstance;
 
-  console.log("..." + { ...getTableProps() });
   return (
     <div
       className="panel panel-default"
@@ -94,34 +93,41 @@ function Submission() {
           </a>
         </div>
 
-        {/* <div className="panel panel-default">
+        <div className="panel panel-default">
           <div className="panel-heading">
             <h2>Submition History</h2>
-          </div> */}
-        <div>
-          <table {...getTableProps()}>
-            <thead>
-              {headerGroups.map((headerGroup) => (
-                <tr {...headerGroup.getHeaderGroupProps()}>
-                  {headerGroup.headers.map((column) => (
-                    <th {...column.getHeaderProps()}>
-                      {column.render("Header")}
-                    </th>
-                  ))}
-                </tr>
-              ))}
-            </thead>
-            <tbody {...getTableBodyProps()}>
-              {submissions.map((submission, index) => {
-                return (
-                  <tr key={index}>
-                    <td>{submission.title}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-          {/* </div> */}
+          </div>
+          <div className="panel-body">
+            <div className="table-responsive">
+              <Styles>
+                <table {...getTableProps()} style={{ width: "100%" }}>
+                  <thead>
+                    {headerGroups.map((headerGroup) => (
+                      <tr {...headerGroup.getHeaderGroupProps()}>
+                        {headerGroup.headers.map((column) => (
+                          <th {...column.getHeaderProps()}>
+                            {column.render("Header")}
+                          </th>
+                        ))}
+                      </tr>
+                    ))}
+                  </thead>
+                  <tbody {...getTableBodyProps()}>
+                    {submissions.map((submission, index) => {
+                      return (
+                        <tr key={index}>
+                          <td>{submission.title}</td>
+                          <td>{submission.amount}</td>
+                          <td>{submission.event_date_from}</td>
+                          <td>{submission.event_date_to}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </Styles>
+            </div>
+          </div>
         </div>
       </div>
     </div>

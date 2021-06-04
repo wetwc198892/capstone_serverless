@@ -9,7 +9,7 @@ function Main() {
       className="pannel panel-default"
       style={{
         width: "100%",
-        padding: "50px 50px 50px 30px",
+        padding: "70px 50px 50px 30px",
         align: "center",
       }}
     >
