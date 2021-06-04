@@ -1,0 +1,358 @@
+
+/*=============================================================
+    Authour URI: www.binarytheme.com
+    License: Commons Attribution 3.0
+
+    http://creativecommons.org/licenses/by/3.0/
+
+    100% To use For Personal And Commercial Use.
+    IN EXCHANGE JUST GIVE US CREDITS AND TELL YOUR FRIENDS ABOUT US
+   
+    ========================================================  */
+
+
+/*==============================================
+    BASIC  STYLES    
+    =============================================*/
+body {
+    font-family: 'Open Sans', sans-serif;
+    line-height:25px;
+}
+
+#wrapper {
+    width: 100%;
+    background: #202020;
+}
+
+#page-wrapper {
+    padding: 15px 15px;
+    min-height: 600px;
+    background: #F3F3F3;
+}
+
+#page-inner {
+    width: 100%;
+    margin: 10px 20px 10px 0px;
+    background-color: #fff!important;
+    padding: 10px;
+    min-height: 1200px;
+}
+
+.page-head-line {
+    font-size: 30px;
+    text-transform: uppercase;
+    color: #000;
+    font-weight: 800;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #00CA79;
+    margin-bottom: 10px;
+}
+
+.page-subhead-line {
+    font-size: 14px;
+    padding-top: 5px;
+    padding-bottom: 20px;
+    font-style:italic;
+    margin-bottom:30px;
+    border-bottom:1px dashed #00CA79;
+
+}
+
+
+/*==============================================
+    MENU STYLES    
+    =============================================*/
+
+
+.navbar-cls-top .navbar-brand {
+    color: #fff;
+    background: #202020;
+    width: 260px;
+    text-align: center;
+    height: 75px;
+    font-size: 20px;
+    letter-spacing: 1px;
+    font-weight: 900;
+    padding-top: 25px;
+    text-transform:uppercase;
+}
+
+.header-right {
+    color: #fff;
+    padding: 15px 50px 5px 50px;
+    float: right;
+    font-size: 16px;
+}
+
+.navbar-cls-top .navbar-brand:hover {
+    background: #202020;
+    color: #fff;
+}
+
+.user-img-div {
+    min-height: 140px;
+    padding: 20px;
+    background-color: #4380B8;
+}
+
+    .user-img-div img {
+        max-height: 60px;
+    }
+
+    .user-img-div .inner-text {
+        text-align: right;
+        position: relative;
+        color: #fff;
+        font-weight: 800;
+        line-height: 25px;
+    }
+
+.active-menu {
+    background-color: #00CA79!important;
+}
+.active-menu-top {
+    background-color: #000!important;
+}
+
+.arrow {
+    float: right;
+}
+
+.fa.arrow:before {
+    content: "\f104";
+}
+
+.active > a > .fa.arrow:before {
+    content: "\f107";
+}
+
+
+.nav-second-level li,
+.nav-third-level li {
+    border-bottom: none !important;
+}
+
+    .nav-second-level li a {
+        padding-left: 37px;
+    }
+
+    .nav-third-level li a {
+        padding-left: 55px;
+    }
+
+.sidebar-collapse, .sidebar-collapse .nav {
+    background: none;
+}
+
+    .sidebar-collapse .nav {
+        padding: 0;
+    }
+
+        .sidebar-collapse .nav > li > a {
+            color: #fff;
+            background: #202020;
+            text-shadow: none;
+            padding: 15px 40px;
+            border-bottom: 1px solid #2F2E31;
+        }
+
+    .sidebar-collapse > .nav > li > a {
+        padding: 15px 10px;
+    }
+
+    .sidebar-collapse .nav > li > a:hover,
+    .sidebar-collapse .nav > li > a:focus {
+        background: #0A0A0A;
+        outline: 0;
+    }
+
+
+
+.nav-second-level > li:last-child > a:after,
+.nav-third-level > li:last-child > a:after {
+    height: 50%;
+}
+
+.nav-third-level > li > a:after,
+.nav-third-level > li > a:before {
+    left: 40px;
+}
+
+.navbar-side {
+    border: none;
+    background-color: #202020;
+}
+
+.navbar-cls-top {
+    background: #00CA79;
+    border-bottom: none;
+}
+
+
+.navbar-default {
+    border: 0px solid black;
+}
+
+.navbar-header {
+    background: #000000;
+}
+
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+    background-color: #00CA79;
+}
+
+.navbar-default .navbar-toggle {
+    border-color: #fff;
+}
+
+    .navbar-default .navbar-toggle .icon-bar {
+        background-color: #FFF;
+    }
+
+.nav > li > a > i {
+    margin-right: 10px;
+}
+/*==============================================
+    FOOTER  STYLES    
+    =============================================*/
+#footer-sec {
+    background-color:#000;
+    padding:20px 50px;
+    color:#fff;
+    font-size:12px;
+}
+
+    #footer-sec a {
+        color:#fff;
+    }
+    #footer-sec a:hover,a:focus {
+        color:#fff;
+        text-decoration:none;
+    }
+/*==============================================
+    MEDIA QUERIES     
+    =============================================*/
+
+@media (min-width:768px) {
+    #page-wrapper {
+        margin: 0 0 0 260px;
+        padding: 15px 30px;
+        min-height: 1200px;
+    }
+
+
+    .navbar-side {
+        z-index: 1;
+        position: absolute;
+        width: 260px;
+    }
+
+    .navbar {
+        border-radius: 0px;
+    }
+}
+
+/*==============================================
+    Status     
+    =============================================*/
+/* apply a natural box layout model to all elements */
+*, *:before, *:after {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.steps {
+	margin:0 0 20px;
+	padding:0;
+	list-style:none;
+	overflow:hidden;
+}
+.steps li {float:left;position:relative;}
+.wrap {float:left}
+.num {
+	width:30px;
+	height:30px;
+	line-height:30px;
+	border-radius:50%;
+	background:green;
+	color:#000;
+	font-weight:bold;
+	text-align:center;
+	float:left;
+	position:relative;
+	margin:0 4px 0 0;
+}
+.num b, .steps p span {position:relative;z-index:2;}
+.num:after {
+	content:" ";
+	width: 0;
+	height: 0;
+	border-top: 14px solid #fff;
+	border-bottom: 14px solid #fff;
+	border-left: 14px solid green;
+	position:absolute;
+	right:-4px;
+	top:1px;
+}
+.steps p {
+	background:#fff;
+	margin:0;
+	float:left;
+	height:30px;
+	line-height:14px;
+	font-size:10px;
+	width:15em;
+	padding:0 25px 0 15px;
+	text-align:center;
+}
+/* closed */
+.closed .num:after {border-left-color:#000}
+.closed .num {color:#fff;background:#000}
+.closed .num.last:after {display:none}
+/* open */
+.open .num:after {
+	border-left-color:#ccc;
+	border-top-color:transparent;
+	border-bottom-color:transparent;
+	z-index:1;
+}
+.open .num:before {
+	width: 0;
+	height: 0;
+	content:" ";
+	position:absolute;
+	border-top: 15px solid #fff;
+	border-bottom: 15px solid #fff;
+	border-left: 15px solid green;
+	position:absolute;
+	right:-5px;
+	top:0;
+	z-index:0;
+}
+.open .num {background:#ccc;}
+.open .wrap {border-radius:15px 0 0 15px;border:1px solid green}
+li.open:after {
+	content:" ";
+	width: 0;
+	height: 0;
+	border-top: 16px solid #fff;
+	border-bottom: 16px solid #fff;
+	border-left: 15px solid green;
+	position:absolute;
+	right:0;
+	top:0;
+	z-index:0;
+}
+li.open:before {
+	width: 0;
+	height: 0;
+	content:" ";
+	border-top: 15px solid transparent;
+	border-bottom: 15px solid transparent;
+	border-left: 14px solid #fff;
+	position:absolute;
+	right:1px;
+	top:1px;
+	z-index:1;
+}
+
