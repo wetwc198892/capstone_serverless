@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import NavBar from "./components/navbar";
 import Main from "./pages/main";
 import Submission from "./pages/submission";
+import ProposalSubmission from "./pages/proposalSubmission";
 import history from "./history";
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
             <Main />
           </Route>
           <Route path="/submission" component={Submission} />
+          <Route path="/proposalSubmission" component={ProposalSubmission} />
         </Switch>
       </Router>
     </div>

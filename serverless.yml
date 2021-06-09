@@ -24,15 +24,22 @@ custom:
     - bucketName: ${self:custom.bucketName}
       localDir: proposal-app/build/
 functions:
-  getUser:
-    handler: functions/login.getUser
+  proposalSubmission:
+    handler: functions/proposalSubmission.proposalSubmission
     events:
       - http:
-          path: /getUser
+          path: /proposalSubmission
+          method: post
+          cors: true
+  deleteSubmission:
+    handler: functions/deleteSubmission.deleteSubmission
+    events:
+      - http:
+          path: /deleteSubmission
           method: post
           cors: true
   getSubmission:
-    handler: functions/getSubmission.getSubmissions
+    handler: functions/submission.getSubmissions
     events:
       - http:
           path: /getSubmissions

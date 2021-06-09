@@ -10,7 +10,6 @@
       "region": "us-east-1",
       "lambdaHashingVersion": "20201221",
       "stage": "dev",
-      "variableSyntax": "\\${([^{}:]+?(?:\\(|:)(?:[^:{}][^{}]*?)?)}",
       "versionFunctions": true,
       "compiledCloudFormationTemplate": {
         "AWSTemplateFormatVersion": "2010-09-09",
@@ -85,10 +84,16 @@
               }
             }
           },
-          "GetUserLogGroup": {
+          "ProposalSubmissionLogGroup": {
             "Type": "AWS::Logs::LogGroup",
             "Properties": {
-              "LogGroupName": "/aws/lambda/capstone-proposal-system-dev-getUser"
+              "LogGroupName": "/aws/lambda/capstone-proposal-system-dev-proposalSubmission"
+            }
+          },
+          "DeleteSubmissionLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/capstone-proposal-system-dev-deleteSubmission"
             }
           },
           "GetSubmissionLogGroup": {
@@ -174,18 +179,18 @@
               }
             }
           },
-          "GetUserLambdaFunction": {
+          "ProposalSubmissionLambdaFunction": {
             "Type": "AWS::Lambda::Function",
             "Properties": {
               "Code": {
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/capstone-proposal-system/dev/1622824040451-2021-06-04T16:27:20.451Z/capstone-proposal-system.zip"
+                "S3Key": "serverless/capstone-proposal-system/dev/1623199004802-2021-06-09T00:36:44.802Z/capstone-proposal-system.zip"
               },
-              "Handler": "functions/login.getUser",
+              "Handler": "functions/proposalSubmission.proposalSubmission",
               "Runtime": "python3.8",
-              "FunctionName": "capstone-proposal-system-dev-getUser",
+              "FunctionName": "capstone-proposal-system-dev-proposalSubmission",
               "MemorySize": 1024,
               "Timeout": 6,
               "Role": {
@@ -196,7 +201,32 @@
               }
             },
             "DependsOn": [
-              "GetUserLogGroup"
+              "ProposalSubmissionLogGroup"
+            ]
+          },
+          "DeleteSubmissionLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/capstone-proposal-system/dev/1623199004802-2021-06-09T00:36:44.802Z/capstone-proposal-system.zip"
+              },
+              "Handler": "functions/deleteSubmission.deleteSubmission",
+              "Runtime": "python3.8",
+              "FunctionName": "capstone-proposal-system-dev-deleteSubmission",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "DeleteSubmissionLogGroup"
             ]
           },
           "GetSubmissionLambdaFunction": {
@@ -206,9 +236,9 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/capstone-proposal-system/dev/1622824040451-2021-06-04T16:27:20.451Z/capstone-proposal-system.zip"
+                "S3Key": "serverless/capstone-proposal-system/dev/1623199004802-2021-06-09T00:36:44.802Z/capstone-proposal-system.zip"
               },
-              "Handler": "functions/getSubmission.getSubmissions",
+              "Handler": "functions/submission.getSubmissions",
               "Runtime": "python3.8",
               "FunctionName": "capstone-proposal-system-dev-getSubmission",
               "MemorySize": 1024,
@@ -224,24 +254,34 @@
               "GetSubmissionLogGroup"
             ]
           },
-          "GetUserLambdaVersionJNMezlGbKpvFLmEqsM93hFR1qFLXCSXjqQRtUlQO1SE": {
+          "ProposalSubmissionLambdaVersionvuHhnO6tBWTFlNlG7jgxPfFJzz9sJ0sYQ7VfgqIvBE": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
-                "Ref": "GetUserLambdaFunction"
+                "Ref": "ProposalSubmissionLambdaFunction"
               },
-              "CodeSha256": "0hQVq2uGx9zecDjj0DTkHlPO5gtBRcBSIZ6KL24HdXQ="
+              "CodeSha256": "JJ/pnFA5PeXSfs1AF6wFmArgpKHrB9ML170FTy7aAeM="
             }
           },
-          "GetSubmissionLambdaVersiontCIzowU59NoYOCrOWYajkbjJKRMb8jvCzFJmz9Tn8k": {
+          "DeleteSubmissionLambdaVersione3MNSvz5Z8y0Gxn8UWnHgZIjqTZ3IosAnIdTGabepo": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "DeleteSubmissionLambdaFunction"
+              },
+              "CodeSha256": "JJ/pnFA5PeXSfs1AF6wFmArgpKHrB9ML170FTy7aAeM="
+            }
+          },
+          "GetSubmissionLambdaVersionC7PbJqAfTuXc58gueDkpP7h2IfZ9AH3lqDABQ8F4E": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GetSubmissionLambdaFunction"
               },
-              "CodeSha256": "0hQVq2uGx9zecDjj0DTkHlPO5gtBRcBSIZ6KL24HdXQ="
+              "CodeSha256": "JJ/pnFA5PeXSfs1AF6wFmArgpKHrB9ML170FTy7aAeM="
             }
           },
           "ApiGatewayRestApi": {
@@ -256,7 +296,7 @@
               "Policy": ""
             }
           },
-          "ApiGatewayResourceGetuser": {
+          "ApiGatewayResourceProposalsubmission": {
             "Type": "AWS::ApiGateway::Resource",
             "Properties": {
               "ParentId": {
@@ -265,7 +305,22 @@
                   "RootResourceId"
                 ]
               },
-              "PathPart": "getUser",
+              "PathPart": "proposalSubmission",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayResourceDeletesubmission": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+              "ParentId": {
+                "Fn::GetAtt": [
+                  "ApiGatewayRestApi",
+                  "RootResourceId"
+                ]
+              },
+              "PathPart": "deleteSubmission",
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
               }
@@ -286,7 +341,7 @@
               }
             }
           },
-          "ApiGatewayMethodGetuserOptions": {
+          "ApiGatewayMethodProposalsubmissionOptions": {
             "Type": "AWS::ApiGateway::Method",
             "Properties": {
               "AuthorizationType": "NONE",
@@ -324,7 +379,52 @@
                 ]
               },
               "ResourceId": {
-                "Ref": "ApiGatewayResourceGetuser"
+                "Ref": "ApiGatewayResourceProposalsubmission"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayMethodDeletesubmissionOptions": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "AuthorizationType": "NONE",
+              "HttpMethod": "OPTIONS",
+              "MethodResponses": [
+                {
+                  "StatusCode": "200",
+                  "ResponseParameters": {
+                    "method.response.header.Access-Control-Allow-Origin": true,
+                    "method.response.header.Access-Control-Allow-Headers": true,
+                    "method.response.header.Access-Control-Allow-Methods": true
+                  },
+                  "ResponseModels": {}
+                }
+              ],
+              "RequestParameters": {},
+              "Integration": {
+                "Type": "MOCK",
+                "RequestTemplates": {
+                  "application/json": "{statusCode:200}"
+                },
+                "ContentHandling": "CONVERT_TO_TEXT",
+                "IntegrationResponses": [
+                  {
+                    "StatusCode": "200",
+                    "ResponseParameters": {
+                      "method.response.header.Access-Control-Allow-Origin": "'*'",
+                      "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                      "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'"
+                    },
+                    "ResponseTemplates": {
+                      "application/json": "#set($origin = $input.params(\"Origin\"))\n#if($origin == \"\") #set($origin = $input.params(\"origin\")) #end\n#if($origin.matches(\".+\")) #set($context.responseOverride.header.Access-Control-Allow-Origin = $origin) #end"
+                    }
+                  }
+                ]
+              },
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceDeletesubmission"
               },
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
@@ -376,13 +476,13 @@
               }
             }
           },
-          "ApiGatewayMethodGetuserPost": {
+          "ApiGatewayMethodProposalsubmissionPost": {
             "Type": "AWS::ApiGateway::Method",
             "Properties": {
               "HttpMethod": "POST",
               "RequestParameters": {},
               "ResourceId": {
-                "Ref": "ApiGatewayResourceGetuser"
+                "Ref": "ApiGatewayResourceProposalsubmission"
               },
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
@@ -407,7 +507,50 @@
                       ":lambda:path/2015-03-31/functions/",
                       {
                         "Fn::GetAtt": [
-                          "GetUserLambdaFunction",
+                          "ProposalSubmissionLambdaFunction",
+                          "Arn"
+                        ]
+                      },
+                      "/invocations"
+                    ]
+                  ]
+                }
+              },
+              "MethodResponses": []
+            }
+          },
+          "ApiGatewayMethodDeletesubmissionPost": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "HttpMethod": "POST",
+              "RequestParameters": {},
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceDeletesubmission"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "ApiKeyRequired": false,
+              "AuthorizationType": "NONE",
+              "Integration": {
+                "IntegrationHttpMethod": "POST",
+                "Type": "AWS_PROXY",
+                "Uri": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":apigateway:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":lambda:path/2015-03-31/functions/",
+                      {
+                        "Fn::GetAtt": [
+                          "DeleteSubmissionLambdaFunction",
                           "Arn"
                         ]
                       },
@@ -462,7 +605,7 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1622824035290": {
+          "ApiGatewayDeployment1623198998260": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -471,18 +614,57 @@
               "StageName": "dev"
             },
             "DependsOn": [
-              "ApiGatewayMethodGetuserOptions",
+              "ApiGatewayMethodProposalsubmissionOptions",
+              "ApiGatewayMethodDeletesubmissionOptions",
               "ApiGatewayMethodGetsubmissionsOptions",
-              "ApiGatewayMethodGetuserPost",
+              "ApiGatewayMethodProposalsubmissionPost",
+              "ApiGatewayMethodDeletesubmissionPost",
               "ApiGatewayMethodGetsubmissionsGet"
             ]
           },
-          "GetUserLambdaPermissionApiGateway": {
+          "ProposalSubmissionLambdaPermissionApiGateway": {
             "Type": "AWS::Lambda::Permission",
             "Properties": {
               "FunctionName": {
                 "Fn::GetAtt": [
-                  "GetUserLambdaFunction",
+                  "ProposalSubmissionLambdaFunction",
+                  "Arn"
+                ]
+              },
+              "Action": "lambda:InvokeFunction",
+              "Principal": "apigateway.amazonaws.com",
+              "SourceArn": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":execute-api:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":",
+                    {
+                      "Ref": "ApiGatewayRestApi"
+                    },
+                    "/*/*"
+                  ]
+                ]
+              }
+            }
+          },
+          "DeleteSubmissionLambdaPermissionApiGateway": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+              "FunctionName": {
+                "Fn::GetAtt": [
+                  "DeleteSubmissionLambdaFunction",
                   "Arn"
                 ]
               },
@@ -642,19 +824,28 @@
               "Name": "sls-capstone-proposal-system-dev-ServerlessDeploymentBucketName"
             }
           },
-          "GetUserLambdaFunctionQualifiedArn": {
+          "ProposalSubmissionLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetUserLambdaVersionJNMezlGbKpvFLmEqsM93hFR1qFLXCSXjqQRtUlQO1SE"
+              "Ref": "ProposalSubmissionLambdaVersionvuHhnO6tBWTFlNlG7jgxPfFJzz9sJ0sYQ7VfgqIvBE"
             },
             "Export": {
-              "Name": "sls-capstone-proposal-system-dev-GetUserLambdaFunctionQualifiedArn"
+              "Name": "sls-capstone-proposal-system-dev-ProposalSubmissionLambdaFunctionQualifiedArn"
+            }
+          },
+          "DeleteSubmissionLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "DeleteSubmissionLambdaVersione3MNSvz5Z8y0Gxn8UWnHgZIjqTZ3IosAnIdTGabepo"
+            },
+            "Export": {
+              "Name": "sls-capstone-proposal-system-dev-DeleteSubmissionLambdaFunctionQualifiedArn"
             }
           },
           "GetSubmissionLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetSubmissionLambdaVersiontCIzowU59NoYOCrOWYajkbjJKRMb8jvCzFJmz9Tn8k"
+              "Ref": "GetSubmissionLambdaVersionC7PbJqAfTuXc58gueDkpP7h2IfZ9AH3lqDABQ8F4E"
             },
             "Export": {
               "Name": "sls-capstone-proposal-system-dev-GetSubmissionLambdaFunctionQualifiedArn"
@@ -786,12 +977,12 @@
     ],
     "pluginsData": {},
     "functions": {
-      "getUser": {
-        "handler": "functions/login.getUser",
+      "proposalSubmission": {
+        "handler": "functions/proposalSubmission.proposalSubmission",
         "events": [
           {
             "http": {
-              "path": "getUser",
+              "path": "proposalSubmission",
               "method": "post",
               "cors": {
                 "origins": [
@@ -816,16 +1007,54 @@
             }
           }
         ],
-        "name": "capstone-proposal-system-dev-getUser",
+        "name": "capstone-proposal-system-dev-proposalSubmission",
         "package": {},
         "memory": 1024,
         "timeout": 6,
         "runtime": "python3.8",
         "vpc": {},
-        "versionLogicalId": "GetUserLambdaVersionJNMezlGbKpvFLmEqsM93hFR1qFLXCSXjqQRtUlQO1SE"
+        "versionLogicalId": "ProposalSubmissionLambdaVersionvuHhnO6tBWTFlNlG7jgxPfFJzz9sJ0sYQ7VfgqIvBE"
+      },
+      "deleteSubmission": {
+        "handler": "functions/deleteSubmission.deleteSubmission",
+        "events": [
+          {
+            "http": {
+              "path": "deleteSubmission",
+              "method": "post",
+              "cors": {
+                "origins": [
+                  "*"
+                ],
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "POST"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent"
+                ],
+                "allowCredentials": false
+              },
+              "integration": "AWS_PROXY"
+            }
+          }
+        ],
+        "name": "capstone-proposal-system-dev-deleteSubmission",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "python3.8",
+        "vpc": {},
+        "versionLogicalId": "DeleteSubmissionLambdaVersione3MNSvz5Z8y0Gxn8UWnHgZIjqTZ3IosAnIdTGabepo"
       },
       "getSubmission": {
-        "handler": "functions/getSubmission.getSubmissions",
+        "handler": "functions/submission.getSubmissions",
         "events": [
           {
             "http": {
@@ -860,7 +1089,7 @@
         "timeout": 6,
         "runtime": "python3.8",
         "vpc": {},
-        "versionLogicalId": "GetSubmissionLambdaVersiontCIzowU59NoYOCrOWYajkbjJKRMb8jvCzFJmz9Tn8k"
+        "versionLogicalId": "GetSubmissionLambdaVersionC7PbJqAfTuXc58gueDkpP7h2IfZ9AH3lqDABQ8F4E"
       }
     },
     "resources": {
@@ -969,7 +1198,7 @@
           "proposal-app/**"
         ],
         "artifact": "/Users/wetwc198892/Documents/GitHub/Capstone/capstone_serverless/.serverless/capstone-proposal-system.zip",
-        "artifactDirectoryName": "serverless/capstone-proposal-system/dev/1622824040451-2021-06-04T16:27:20.451Z"
+        "artifactDirectoryName": "serverless/capstone-proposal-system/dev/1623199004802-2021-06-09T00:36:44.802Z"
       },
       "plugins": {
         "$ref": "$[\"service\"][\"plugins\"]"
@@ -988,7 +1217,7 @@
     "artifact": "/Users/wetwc198892/Documents/GitHub/Capstone/capstone_serverless/.serverless/capstone-proposal-system.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/capstone-proposal-system/dev/1622824040451-2021-06-04T16:27:20.451Z",
+    "artifactDirectoryName": "serverless/capstone-proposal-system/dev/1623199004802-2021-06-09T00:36:44.802Z",
     "artifact": "capstone-proposal-system.zip"
   }
 }

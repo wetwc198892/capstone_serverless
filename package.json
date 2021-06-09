@@ -1,5 +1,10 @@
 {
   "devDependencies": {
     "serverless-s3-sync": "^1.17.1"
+  },
+  "dependencies": {
+    "react-hook-form": "^7.8.1",
+    "serverless-offline": "^7.0.0",
+    "serverless-pseudo-parameters": "^2.5.0"
   }
 }
