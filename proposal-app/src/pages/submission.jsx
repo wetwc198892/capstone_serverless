@@ -45,17 +45,11 @@ function Submission() {
       method: "get",
       url: "https://g14gr1ugze.execute-api.us-east-1.amazonaws.com/dev/getSubmissions",
     }).then((response) => {
-      const res = response.data.data;
-      if (Array.isArray(res)) {
-        setSubmissions(res);
-      } else {
-        setSubmissions([res]);
-      }
+      setSubmissions([...response.data.data]);
     });
   }, []);
 
   const deleteSubmit = (index) => {
-    console.log(submissions[index]);
     var list = submissions;
     axios({
       method: "post",

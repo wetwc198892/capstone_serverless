@@ -9,12 +9,12 @@ ENDPOINT = 'mysql-east1.csanr8y03rm6.us-east-1.rds.amazonaws.com'
 USERNAME = 'admin'
 PASSWORD = 'kimisthebest'
 DATABASE_NAME = 'new_schema'
-connection = pymysql.connect(
-    host=ENDPOINT, user=USERNAME, password=PASSWORD, db=DATABASE_NAME, charset='utf8mb4')
 
 
 def proposalSubmission(event, context):
     try:
+        connection = pymysql.connect(
+            host=ENDPOINT, user=USERNAME, password=PASSWORD, db=DATABASE_NAME, charset='utf8mb4')
         cursor = connection.cursor()
         sql = "INSERT INTO  `tbl_submission` (`submission_no`, `title`, `amount`, `type`, `submit_type`, `event_date_from`,`event_date_to`,`submit_date`,`updated_date`,`is_valid`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
         body = json.loads(event['body'])
@@ -43,3 +43,5 @@ def proposalSubmission(event, context):
     except Exception as e:
         print(e)
         connection.rollback()
+    finally:
+        connection.close()

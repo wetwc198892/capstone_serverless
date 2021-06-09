@@ -4,6 +4,7 @@
   },
   "dependencies": {
     "react-hook-form": "^7.8.1",
+    "serverless": "^2.45.1",
     "serverless-offline": "^7.0.0",
     "serverless-pseudo-parameters": "^2.5.0"
   }

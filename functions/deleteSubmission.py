@@ -9,12 +9,12 @@ ENDPOINT = 'mysql-east1.csanr8y03rm6.us-east-1.rds.amazonaws.com'
 USERNAME = 'admin'
 PASSWORD = 'kimisthebest'
 DATABASE_NAME = 'new_schema'
-connection = pymysql.connect(
-    host=ENDPOINT, user=USERNAME, password=PASSWORD, db=DATABASE_NAME, charset='utf8mb4')
 
 
 def deleteSubmission(event, context):
     try:
+        connection = pymysql.connect(
+            host=ENDPOINT, user=USERNAME, password=PASSWORD, db=DATABASE_NAME, charset='utf8mb4')
         cursor = connection.cursor()
         sql = "UPDATE `tbl_submission` set `is_valid`= 0, updated_date = %s where id = %s"
         body = json.loads(event['body'])
@@ -44,3 +44,5 @@ def deleteSubmission(event, context):
     except Exception as e:
         print(e)
         connection.rollback()
+    finally:
+        connection.close()

@@ -22,10 +22,13 @@ def default(obj):
 
 def getSubmissions(event, context):
     try:
+        connection = pymysql.connect(
+            host=ENDPOINT, user=USERNAME, password=PASSWORD, db=DATABASE_NAME, charset='utf8mb4', cursorclass=pymysql.cursors.DictCursor)
         cursor = connection.cursor()
         sql = "SELECT * FROM tbl_submission where is_valid = 1"
         cursor.execute(sql)
         rows = cursor.fetchall()
+        print(rows)
         if rows:
             body = {
                 "data": rows
@@ -47,3 +50,5 @@ def getSubmissions(event, context):
         }
     except Exception as e:
         print(e)
+    finally:
+        connection.close()

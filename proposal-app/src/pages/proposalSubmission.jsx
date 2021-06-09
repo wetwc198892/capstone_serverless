@@ -5,13 +5,13 @@ import { useHistory } from "react-router-dom";
 function ProposalSubmission() {
   const { register, handleSubmit } = useForm();
   let history = useHistory();
-  const onSubmit = (data) => {
-    console.log(data);
-    axios({
+  const onSubmit = async (data) => {
+    await axios({
       method: "post",
       url: "https://g14gr1ugze.execute-api.us-east-1.amazonaws.com/dev/proposalSubmission",
       data: data,
     });
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     history.push("/submission");
   };
 
