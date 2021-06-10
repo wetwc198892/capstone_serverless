@@ -1,20 +1,14 @@
 import json
-import pymysql
-
-import uuid
 from datetime import datetime
+from functions import storage
 
-
-ENDPOINT = 'mysql-east1.csanr8y03rm6.us-east-1.rds.amazonaws.com'
-USERNAME = 'admin'
-PASSWORD = 'kimisthebest'
-DATABASE_NAME = 'new_schema'
+connection = storage.connect()
 
 
 def deleteSubmission(event, context):
     try:
-        connection = pymysql.connect(
-            host=ENDPOINT, user=USERNAME, password=PASSWORD, db=DATABASE_NAME, charset='utf8mb4')
+        if not connection.open:
+            connection.connect()
         cursor = connection.cursor()
         sql = "UPDATE `tbl_submission` set `is_valid`= 0, updated_date = %s where id = %s"
         body = json.loads(event['body'])
@@ -45,4 +39,5 @@ def deleteSubmission(event, context):
         print(e)
         connection.rollback()
     finally:
-        connection.close()
+        if connection is not None and connection.open:
+            connection.close()

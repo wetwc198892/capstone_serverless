@@ -1,20 +1,15 @@
 import json
-import pymysql
-
 import uuid
 from datetime import datetime
+from functions import storage
 
-
-ENDPOINT = 'mysql-east1.csanr8y03rm6.us-east-1.rds.amazonaws.com'
-USERNAME = 'admin'
-PASSWORD = 'kimisthebest'
-DATABASE_NAME = 'new_schema'
+connection = storage.connect()
 
 
 def proposalSubmission(event, context):
     try:
-        connection = pymysql.connect(
-            host=ENDPOINT, user=USERNAME, password=PASSWORD, db=DATABASE_NAME, charset='utf8mb4')
+        if not connection.open:
+            connection.connect()
         cursor = connection.cursor()
         sql = "INSERT INTO  `tbl_submission` (`submission_no`, `title`, `amount`, `type`, `submit_type`, `event_date_from`,`event_date_to`,`submit_date`,`updated_date`,`is_valid`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
         body = json.loads(event['body'])
@@ -44,4 +39,5 @@ def proposalSubmission(event, context):
         print(e)
         connection.rollback()
     finally:
-        connection.close()
+        if connection is not None and connection.open:
+            connection.close()

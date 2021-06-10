@@ -8,6 +8,7 @@ import "./assets/css/bootstrap-fileupload.min.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import NavBar from "./components/navbar";
 import Main from "./pages/main";
+import PrivateRoute from "./components/private-route";
 import Submission from "./pages/submission";
 import ProposalSubmission from "./pages/proposalSubmission";
 import history from "./history";
@@ -23,8 +24,11 @@ function App() {
           <Route exact path="/">
             <Main />
           </Route>
-          <Route path="/submission" component={Submission} />
-          <Route path="/proposalSubmission" component={ProposalSubmission} />
+          <PrivateRoute path="/submission" component={Submission} />
+          <PrivateRoute
+            path="/proposalSubmission"
+            component={ProposalSubmission}
+          />
         </Switch>
       </Router>
     </div>

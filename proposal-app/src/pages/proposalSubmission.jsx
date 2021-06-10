@@ -46,9 +46,7 @@ function ProposalSubmission() {
           </div>
         </div>
         <div className="form-group">
-          <label for="EventDateFrom" className="col-sm-3 control-label">
-            Event Date (From):
-          </label>
+          <label className="col-sm-3 control-label">Event Date (From):</label>
           <div className="col-sm-3">
             <input
               type="date"
@@ -57,9 +55,7 @@ function ProposalSubmission() {
               {...register("EventDateFrom")}
             />
           </div>
-          <label for="EventDateTo" className="col-sm-3 control-label">
-            Event Date (To):
-          </label>
+          <label className="col-sm-3 control-label">Event Date (To):</label>
           <div className="col-sm-3">
             <input
               type="date"
@@ -70,9 +66,7 @@ function ProposalSubmission() {
           </div>
         </div>
         <div className="form-group">
-          <label for="amount" className="col-sm-3 control-label">
-            Proposed Amount:
-          </label>
+          <label className="col-sm-3 control-label">Proposed Amount:</label>
           <div className="col-sm-9">
             <input
               type="text"
@@ -84,9 +78,7 @@ function ProposalSubmission() {
           </div>
         </div>
         <div className="form-group">
-          <label for="country" className="col-sm-3 control-label">
-            Type
-          </label>
+          <label className="col-sm-3 control-label">Type</label>
           <div className="col-sm-9">
             <select
               name="proposal_type"
@@ -101,9 +93,7 @@ function ProposalSubmission() {
           </div>
         </div>
         <div className="form-group">
-          <label for="country" className="col-sm-3 control-label">
-            Submission Type
-          </label>
+          <label className="col-sm-3 control-label">Submission Type</label>
           <div className="col-sm-9">
             <select
               name="submit_type"

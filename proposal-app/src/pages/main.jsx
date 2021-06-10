@@ -17,6 +17,7 @@ function Main() {
         <div className="container">
           <div className="col-md-4">
             <Link
+              to=""
               onClick={() =>
                 loginWithRedirect({
                   appState: {

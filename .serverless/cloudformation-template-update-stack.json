@@ -173,7 +173,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/capstone-proposal-system/dev/1623216995472-2021-06-09T05:36:35.472Z/capstone-proposal-system.zip"
+          "S3Key": "serverless/capstone-proposal-system/dev/1623310140090-2021-06-10T07:29:00.090Z/capstone-proposal-system.zip"
         },
         "Handler": "functions/proposalSubmission.proposalSubmission",
         "Runtime": "python3.8",
@@ -198,7 +198,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/capstone-proposal-system/dev/1623216995472-2021-06-09T05:36:35.472Z/capstone-proposal-system.zip"
+          "S3Key": "serverless/capstone-proposal-system/dev/1623310140090-2021-06-10T07:29:00.090Z/capstone-proposal-system.zip"
         },
         "Handler": "functions/deleteSubmission.deleteSubmission",
         "Runtime": "python3.8",
@@ -223,7 +223,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/capstone-proposal-system/dev/1623216995472-2021-06-09T05:36:35.472Z/capstone-proposal-system.zip"
+          "S3Key": "serverless/capstone-proposal-system/dev/1623310140090-2021-06-10T07:29:00.090Z/capstone-proposal-system.zip"
         },
         "Handler": "functions/submission.getSubmissions",
         "Runtime": "python3.8",
@@ -241,34 +241,34 @@
         "GetSubmissionLogGroup"
       ]
     },
-    "ProposalSubmissionLambdaVersionMXiBdb10ZKUk5e9JWtNmBVY7wH3xgSe4Y4GOa4Cr3o": {
+    "ProposalSubmissionLambdaVersionQYofrB0zqF19C7jlAnOilyNCnDpGLppMOg0Xmqkh28": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ProposalSubmissionLambdaFunction"
         },
-        "CodeSha256": "SRq1cLBubFfv/qzHSDD8uBOM7enTy6hZL9j1gHWOjMU="
+        "CodeSha256": "4jsCWkp55ZGOzmLd0PlXo/2IHTos7qK6vr8fhjv/QyY="
       }
     },
-    "DeleteSubmissionLambdaVersionMVQjTYT8l00ZSywjonVeYbQQHtGzXcTUoqzUPr9U1ME": {
+    "DeleteSubmissionLambdaVersionxpTJ0WiiCAlN5jnmlENGJ2TC3h2xNn9vjlYTousLt4": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "DeleteSubmissionLambdaFunction"
         },
-        "CodeSha256": "SRq1cLBubFfv/qzHSDD8uBOM7enTy6hZL9j1gHWOjMU="
+        "CodeSha256": "4jsCWkp55ZGOzmLd0PlXo/2IHTos7qK6vr8fhjv/QyY="
       }
     },
-    "GetSubmissionLambdaVersionbPFXbEOtcUSvJOoEfG8vQusJsI9W31WZ2bmhjAD72Y": {
+    "GetSubmissionLambdaVersionZmXV8zNnZMPYUd6ivi3iAawMcRtJkDOuHfXWx8qC0": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "GetSubmissionLambdaFunction"
         },
-        "CodeSha256": "SRq1cLBubFfv/qzHSDD8uBOM7enTy6hZL9j1gHWOjMU="
+        "CodeSha256": "4jsCWkp55ZGOzmLd0PlXo/2IHTos7qK6vr8fhjv/QyY="
       }
     },
     "ApiGatewayRestApi": {
@@ -592,7 +592,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1623216984667": {
+    "ApiGatewayDeployment1623310128686": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -814,7 +814,7 @@
     "ProposalSubmissionLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ProposalSubmissionLambdaVersionMXiBdb10ZKUk5e9JWtNmBVY7wH3xgSe4Y4GOa4Cr3o"
+        "Ref": "ProposalSubmissionLambdaVersionQYofrB0zqF19C7jlAnOilyNCnDpGLppMOg0Xmqkh28"
       },
       "Export": {
         "Name": "sls-capstone-proposal-system-dev-ProposalSubmissionLambdaFunctionQualifiedArn"
@@ -823,7 +823,7 @@
     "DeleteSubmissionLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "DeleteSubmissionLambdaVersionMVQjTYT8l00ZSywjonVeYbQQHtGzXcTUoqzUPr9U1ME"
+        "Ref": "DeleteSubmissionLambdaVersionxpTJ0WiiCAlN5jnmlENGJ2TC3h2xNn9vjlYTousLt4"
       },
       "Export": {
         "Name": "sls-capstone-proposal-system-dev-DeleteSubmissionLambdaFunctionQualifiedArn"
@@ -832,7 +832,7 @@
     "GetSubmissionLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "GetSubmissionLambdaVersionbPFXbEOtcUSvJOoEfG8vQusJsI9W31WZ2bmhjAD72Y"
+        "Ref": "GetSubmissionLambdaVersionZmXV8zNnZMPYUd6ivi3iAawMcRtJkDOuHfXWx8qC0"
       },
       "Export": {
         "Name": "sls-capstone-proposal-system-dev-GetSubmissionLambdaFunctionQualifiedArn"

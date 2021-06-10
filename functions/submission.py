@@ -1,14 +1,9 @@
-import json
-import pymysql
-import datetime
 from decimal import Decimal
+import json
+import datetime
+from functions import storage
 
-ENDPOINT = 'mysql-east1.csanr8y03rm6.us-east-1.rds.amazonaws.com'
-USERNAME = 'admin'
-PASSWORD = 'kimisthebest'
-DATABASE_NAME = 'new_schema'
-connection = pymysql.connect(
-    host=ENDPOINT, user=USERNAME, password=PASSWORD, db=DATABASE_NAME, charset='utf8mb4', cursorclass=pymysql.cursors.DictCursor)
+connection = storage.connect()
 
 
 def default(obj):
@@ -22,8 +17,8 @@ def default(obj):
 
 def getSubmissions(event, context):
     try:
-        connection = pymysql.connect(
-            host=ENDPOINT, user=USERNAME, password=PASSWORD, db=DATABASE_NAME, charset='utf8mb4', cursorclass=pymysql.cursors.DictCursor)
+        if not connection.open:
+            connection.connect()
         cursor = connection.cursor()
         sql = "SELECT * FROM tbl_submission where is_valid = 1"
         cursor.execute(sql)
@@ -51,4 +46,5 @@ def getSubmissions(event, context):
     except Exception as e:
         print(e)
     finally:
-        connection.close()
+        if connection is not None and connection.open:
+            connection.close()
